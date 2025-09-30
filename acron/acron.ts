@@ -293,7 +293,7 @@ async function scheduleTask(task: AcronTask) {
         const entities = reviveEntities(t.entities);
         await client.sendMessage(entityLike, {
           message: t.message,
-          formattingEntities: entities,
+          formattingEntities: entities, 
           replyTo: t.replyTo ? toInt(t.replyTo) : undefined,
         });
         if (idx >= 0) {
@@ -332,9 +332,8 @@ async function scheduleTask(task: AcronTask) {
 
           // 复制发送（保留文本/实体/媒体）
           await client.sendMessage(entityLike, {
-            message: realtimeMsg, // 直接传入消息对象以便自动处理媒体/实体
+            message: realtimeMsg,  // ✅ 正确：直接传入 Message 对象
             replyTo: t.replyTo ? toInt(t.replyTo) : undefined,
-            formattingEntities: realtimeMsg.entities,
           });
 
           if (idx >= 0) {
